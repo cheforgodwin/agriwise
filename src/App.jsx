@@ -1,3 +1,5 @@
+import Home from './pages/public/Home.jsx'
+
 export default function App() {
-  return <main>Welcome to Agriwise</main>
+  return <Home />
 }
