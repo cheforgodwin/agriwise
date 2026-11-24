@@ -88,7 +88,10 @@ export default function Home() {
           <a href="#markets">Markets</a>
           <a href="#about">About</a>
         </nav>
-        <a className="button button--outline header-cta" href="#get-started">Get started <span aria-hidden="true">↗</span></a>
+        <div className="header-actions">
+          <a className="header-login" href="/login">Log in</a>
+          <a className="button button--outline header-cta" href="/register">Sign up <span aria-hidden="true">↗</span></a>
+        </div>
       </header>
 
       <main>

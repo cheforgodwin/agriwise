@@ -75,6 +75,22 @@ a {
   font-size: 14px;
 }
 
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.header-login {
+  color: #405548;
+  font-size: 14px;
+  font-weight: 650;
+}
+
+.header-login:hover {
+  color: var(--green);
+}
+
 .main-nav a,
 .text-link,
 .feature-card a,
@@ -821,6 +837,14 @@ a {
 
   .main-nav {
     display: none;
+  }
+
+  .header-actions {
+    gap: 12px;
+  }
+
+  .header-login {
+    font-size: 12px;
   }
 
   .header-cta {

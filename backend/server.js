@@ -8,7 +8,26 @@ import { CAMEROON_REGIONS } from './config/regions.js';
 const app = express();
 app.use(express.json());
 
-connectDB();
+const clientOrigin = process.env.CLIENT_ORIGIN;
+app.use((req, res, next) => {
+  const origin = req.headers.origin;
+
+  if (clientOrigin && origin === clientOrigin) {
+    res.setHeader('Access-Control-Allow-Origin', clientOrigin);
+    res.setHeader('Vary', 'Origin');
+    res.setHeader(
+      'Access-Control-Allow-Headers',
+      'Authorization, Content-Type, Accept-Language'
+    );
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+
+    if (req.method === 'OPTIONS') {
+      return res.sendStatus(204);
+    }
+  }
+
+  next();
+});
 
 app.use(languageDetector);
 
@@ -23,4 +42,10 @@ app.get('/', (req, res) => {
 });
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+async function startServer() {
+  await connectDB();
+  app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+}
+
+startServer();
